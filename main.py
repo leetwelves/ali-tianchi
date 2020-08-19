@@ -37,18 +37,30 @@ def test(epoch,**kwargs):
 
     results=[]
     for ii ,(data,path) in enumerate(test_loader):
+<<<<<<< HEAD
         input = data.to(opt.device)
         score = model(input)
         probability = t.nn.functional.softmax(score,dim=1)[:,0].detach().tolist()
         
         probability = t.nn.functional.softmax\
             (score,dim=1).data.cpu().numpy()
+=======
+        input=t.autograd.Variable(data,volatile =True)
+        input=input.cuda()
+        score=model(input)
+        #print(score)
+        probability = t.nn.functional.softmax\
+            (score).data.cpu().numpy()
+>>>>>>> c429726b3810641e1d56e891720cdbbc16848a66
         probability = probability.argmax(1)
         batch_results = [(path_,probability_)
             for path_,probability_ in zip(path,probability)]
         results += batch_results
     write_csv(results,'./results/model_test_{}.csv'.format(epoch))
+<<<<<<< HEAD
  
+=======
+>>>>>>> c429726b3810641e1d56e891720cdbbc16848a66
     
 
 
@@ -90,8 +102,12 @@ def train(**kwargs):
                                                         lr=lr,
                                                         momentum=0.9,
                                                         weight_decay=opt.weight_decay)
+<<<<<<< HEAD
     scheduler = t.optim.lr_scheduler.StepLR(optimizer, step_size = 15, gamma = 0.1, last_epoch=-1)
     
+=======
+
+>>>>>>> c429726b3810641e1d56e891720cdbbc16848a66
    
     
         
@@ -161,8 +177,12 @@ def train(**kwargs):
         #         param_group['lr'] = lr
         
 
+<<<<<<< HEAD
         # previous_loss = loss_meter.value()[0]
     
+=======
+        previous_loss = loss_meter.value()[0]
+>>>>>>> c429726b3810641e1d56e891720cdbbc16848a66
        # test(epoch=epoch)
 
 @t.no_grad()
@@ -204,5 +224,10 @@ def help():
 if __name__=='__main__':
    # import fire
   #  fire.Fire()
+<<<<<<< HEAD
     #main()
     test(epoch=38)
+=======
+    main()
+    # test(epoch=38)
+>>>>>>> c429726b3810641e1d56e891720cdbbc16848a66

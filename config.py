@@ -16,7 +16,11 @@ class DefaultConfig(object):
     result_file = 'result.csv'
 
 
+<<<<<<< HEAD
     max_epoch = 25
+=======
+    max_epoch = 40
+>>>>>>> c429726b3810641e1d56e891720cdbbc16848a66
     lr = 0.001 # initial learning rate
     lr_decay = 0.5  # when val_loss increase, lr = lr*lr_decay
     weight_decay = 1e-5  # 损失函数
