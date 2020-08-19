@@ -21,7 +21,7 @@ def select(class_arr, split_ratio):
     test_list = [class_arr[i] for i in index_list[split_index:]]
     return train_list, test_list
 
-def split(dataset_dir, json_file='amap_traffic_annotations_train.json',split_ratio=0.8):
+def split(dataset_dir, json_file='amap_traffic_annotations_test.json',split_ratio=1):
     json_dir = os.path.join(dataset_dir, json_file)
     file = open(json_dir,encoding='utf-8')
     file = json.loads(file.read())
@@ -40,9 +40,9 @@ def split(dataset_dir, json_file='amap_traffic_annotations_train.json',split_rat
     class_0_train, class_0_test = select(class_0, split_ratio)
     class_1_train, class_1_test = select(class_1, split_ratio)
     class_2_train, class_2_test = select(class_2, split_ratio)
-    train_list = np.concatenate([class_0_train,class_1_train,class_2_train])
-    test_list = np.concatenate([class_0_test,class_1_test,class_2_test])
-    return train_list, test_list
+    test_list1 = np.concatenate([class_0_train,class_1_train,class_2_train])
+    test_list2 = np.concatenate([class_0_test,class_1_test,class_2_test])
+    return test_list1, test_list2
 
 def write_txt(txt_dir, data_arr):
     file = open(txt_dir,'w')
@@ -52,8 +52,7 @@ def write_txt(txt_dir, data_arr):
             file.write(line)
 
 if __name__ == "__main__":
-    dataset_dir = '/home/apollo/ali-tianchi/dataset/train_dataset'
-    train_list, test_list = split(dataset_dir)
-    write_txt('./train_list.txt', train_list)
-    write_txt('./val_list.txt', test_list)
-
+    dataset_dir = '/home/apollo/ali-tianchi/dataset/test_dataset'
+    test_list1, test_list2 = split(dataset_dir)
+    write_txt('./test_list1.txt', test_list1)
+    write_txt('./test_list2.txt', test_list2)

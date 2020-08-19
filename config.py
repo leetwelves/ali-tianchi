@@ -7,7 +7,7 @@ class DefaultConfig(object):
     vis_port =8097 # visdom 端口
    # model = 'resnet101'  # 使用的模型，名字必须与models/__init__.py中的名字一致
 
-    batch_size = 8  # batch size
+    batch_size = 32  # batch size
     use_gpu = True  # user GPU or not
     num_workers = 8  # how many workers for loading data
     print_freq = 20  # print info every N batch
@@ -16,8 +16,8 @@ class DefaultConfig(object):
     result_file = 'result.csv'
 
 
-    max_epoch = 10
-    lr = 0.001  # initial learning rate
+    max_epoch = 25
+    lr = 0.001 # initial learning rate
     lr_decay = 0.5  # when val_loss increase, lr = lr*lr_decay
     weight_decay = 1e-5  # 损失函数
 
